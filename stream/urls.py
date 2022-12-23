@@ -13,6 +13,7 @@ urlpatterns = [
     path('',GeneralVideoListView.as_view(), name="video-list"),   
     path('video/new/',VideoCreateView.as_view(), name="video-create"),
     path('search',views.search,name="search"),
+    path('playlist',views.playlist,name="playlist"),
     # path('login', auth_views.LoginView.as_view(template_name='admin/login/'), name="login"),
     # path('logout',auth_views.LogoutView.as_view(template_name='admin/logout/'), name="logout"),
      # Login and Logout

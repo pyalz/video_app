@@ -6,7 +6,7 @@ from . forms import VidUploadForm
 from django.views.generic import DetailView, DeleteView, UpdateView, ListView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User 
-
+from . models import PLAYLIST_CHOICES
 
 #https://docs.djangoproject.com/en/4.1/topics/class-based-views/generic-display/
 class GeneralVideoListView(ListView):
@@ -23,6 +23,15 @@ def search(request):
             return render(request, 'stream/search.html',{'videos':results})
     
     return render(request, 'stream/search.html')
+
+def playlist(request):
+    if request.method == 'POST':
+        query = request.POST.get('playlist', None)
+        if query:
+            results = VidStream.objects.filter(playlist__contains=query)
+            return render(request, 'stream/playlist.html',{'videos':results})
+    return render(request, 'stream/playlist.html')
+
 
 class VideoCreateView(LoginRequiredMixin   ,CreateView):
     model = VidStream
