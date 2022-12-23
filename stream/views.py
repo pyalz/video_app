@@ -23,3 +23,10 @@ def search(request):
             return render(request, 'stream/search.html',{'videos':results})
     
     return render(request, 'stream/search.html')
+
+class VideoCreateView(LoginRequiredMixin   ,CreateView):
+    model = VidStream
+    login_url = '/login/'
+    success_url = "/"
+    template_name = 'stream/post-video.html'
+    fields = ['title', 'description', 'playlist','video','author_email']
