@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User 
 from . models import PLAYLIST_CHOICES
 
+
 #https://docs.djangoproject.com/en/4.1/topics/class-based-views/generic-display/
 class GeneralVideoListView(ListView):
     model = VidStream
@@ -34,8 +35,8 @@ def playlist(request):
 
 
 class VideoCreateView(LoginRequiredMixin   ,CreateView):
-    model = VidStream
-    login_url = '/login/'
+    model = VidStream    
+    login_url = "/admin/login/"    
     success_url = "/"
     template_name = 'stream/post-video.html'
     fields = ['title', 'description', 'playlist','video','author_email']
